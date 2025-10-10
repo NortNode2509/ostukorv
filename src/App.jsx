@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ShoppingItem from './ShoppingItem'
 import './App.css'
 
 // Estonian shopping cart items data
@@ -14,20 +15,6 @@ const initialItems = [
   { id: 9, name: 'Sibulad', amount: 4, inBasket: true },
   { id: 10, name: 'Kana', amount: 2, inBasket: false }
 ]
-
-function ShoppingItem({ item }) {
-  return (
-    <div className={`shopping-item ${item.inBasket ? 'in-basket' : ''}`}>
-      <div className="item-info">
-        <span className="item-name">{item.name}</span>
-        <span className="item-amount">Kogus: {item.amount}</span>
-      </div>
-      <div className={`basket-status ${item.inBasket ? 'in-basket' : 'not-in-basket'}`}>
-        {item.inBasket ? 'Ostukorvis' : 'Pole ostukorvis'}
-      </div>
-    </div>
-  )
-}
 
 function ShoppingList({ items }) {
   return (
