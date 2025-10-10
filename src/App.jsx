@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ShoppingItem from './ShoppingItem'
+import AddItem from './AddItem'
 import './App.css'
 
 // Estonian shopping cart items data
@@ -30,9 +31,13 @@ function ShoppingList({ items }) {
 }
 
 function App() {
-  const [items] = useState(initialItems)
+  const [items, setItems] = useState(initialItems)
   const itemsInBasket = items.filter(item => item.inBasket).length
   const totalItems = items.length
+
+  const handleAddItem = (newItem) => {
+    setItems([...items, newItem])
+  }
 
   return (
     <div className="app">
@@ -44,6 +49,7 @@ function App() {
       </header>
       
       <main className="app-main">
+        <AddItem onAddItem={handleAddItem} />
         <h2>Ostunimekiri</h2>
         <ShoppingList items={items} />
       </main>
