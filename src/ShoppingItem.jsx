@@ -1,6 +1,10 @@
-function ShoppingItem({ item }) {
+function ShoppingItem({ item, handleToggleItem }) {
+    const handleClick = () => {
+        console.log('Item clicked', item)
+        handleToggleItem(item.id)
+    }
   return (
-    <div className={`shopping-item ${item.inBasket ? 'in-basket' : ''}`}>
+    <div onClick={handleClick} className={`shopping-item ${item.inBasket ? 'in-basket' : ''}`}>
       <div className="item-info">
         <span className="item-name">{item.name}</span>
         <span className="item-amount">Kogus: {item.amount}</span>

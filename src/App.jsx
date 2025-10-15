@@ -17,13 +17,14 @@ const initialItems = [
   { id: 10, name: 'Kana', amount: 2, inBasket: false }
 ]
 
-function ShoppingList({ items }) {
+function ShoppingList({ items, handleToggleItem }) {
   return (
     <div className="shopping-list">
       {items.map(item => (
         <ShoppingItem 
           key={item.id} 
-          item={item} 
+          item={item}
+          handleToggleItem={handleToggleItem}
         />
       ))}
     </div>
@@ -39,6 +40,11 @@ function App() {
     setItems([...items, newItem])
   }
 
+  const handleToggleItem = (id) => {
+   // setMuutuja( prevVal => uusVäärtus)
+    setItems( prevItems => prevItems.map(item => item.id === id ? { ...item, inBasket: !item.inBasket } : item))
+  }
+  
   return (
     <div className="app">
       <header className="app-header">
@@ -51,7 +57,7 @@ function App() {
       <main className="app-main">
         <AddItem onAddItem={handleAddItem} />
         <h2>Ostunimekiri</h2>
-        <ShoppingList items={items} />
+        <ShoppingList items={items} handleToggleItem={handleToggleItem} />
       </main>
     </div>
   )
